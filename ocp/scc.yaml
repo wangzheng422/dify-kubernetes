@@ -24,6 +24,13 @@ seLinuxContext:
   type: RunAsAny
 supplementalGroups:
   type: RunAsAny
-users: []
+users:
+- system:serviceaccount:dify:dify-postgres
+- system:serviceaccount:dify:dify-redis
+- system:serviceaccount:dify:dify-weaviate
+- system:serviceaccount:dify:dify-api
+- system:serviceaccount:dify:dify-worker
+- system:serviceaccount:dify:dify-web
+- system:serviceaccount:dify:dify-nginx
 volumes:
 - '*'

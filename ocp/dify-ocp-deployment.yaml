@@ -97,10 +97,14 @@ spec:
       labels:
         app: dify-postgres
     spec:
-      serviceAccountName: dify-postgres
+      # serviceAccountName: dify-postgres
       terminationGracePeriodSeconds: 10
       nodeSelector:
         kubernetes.io/os: linux
+      # securityContext:
+      #   runAsUser: 0
+      #   fsGroup: 0
+      #   privileged: true
       containers:
       - name: dify-postgres
         image: postgres:15-alpine
@@ -233,7 +237,11 @@ spec:
       terminationGracePeriodSeconds: 10
       nodeSelector:
         kubernetes.io/os: linux
-      serviceAccountName: dify-redis
+      # serviceAccountName: dify-redis
+      # securityContext:
+      #   runAsUser: 0
+      #   fsGroup: 0
+      #   privileged: true
       containers:
       - name: dify-redis
         image: redis:6-alpine
@@ -364,6 +372,10 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: dify-weaviate
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
+        privileged: true
       containers:
       - name: dify-weaviate
         image: semitechnologies/weaviate:1.19.0
@@ -443,6 +455,10 @@ spec:
       automountServiceAccountToken: false
       nodeSelector:
         kubernetes.io/os: linux
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
+        privileged: true
       containers:
       - name: dify-sandbox
         image: langgenius/dify-sandbox:0.2.10
@@ -631,6 +647,10 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/os: linux
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
+        privileged: true
       containers:
       - name:  dify-ssrf
         image:  ubuntu/squid:latest
@@ -729,6 +749,7 @@ spec:
     spec:
       serviceAccountName: dify-api
       securityContext:
+        privileged: true
         runAsUser: 0
         fsGroup: 0
       nodeSelector:
@@ -929,6 +950,7 @@ spec:
     spec:
       serviceAccountName: dify-worker
       securityContext:
+        privileged: true
         runAsUser: 0
         fsGroup: 0
       nodeSelector:
@@ -1098,6 +1120,7 @@ spec:
     spec:
       serviceAccountName: dify-web
       securityContext:
+        privileged: true
         runAsUser: 0
         fsGroup: 0
       nodeSelector:
@@ -1282,10 +1305,11 @@ spec:
       labels:
         app: dify-nginx
     spec:
-      serviceAccountName: dify-nginx
-      securityContext:
-        runAsUser: 0
-        fsGroup: 0
+      # serviceAccountName: dify-nginx
+      # securityContext:
+      #   privileged: true
+      #   runAsUser: 0
+      #   fsGroup: 0
       nodeSelector:
         kubernetes.io/os: linux
       automountServiceAccountToken: false
