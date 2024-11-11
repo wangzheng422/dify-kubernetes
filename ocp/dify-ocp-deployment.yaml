@@ -617,7 +617,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: dify-ssrf
+      app:  dify-ssrf
   replicas: 1
   strategy:
     rollingUpdate:
@@ -700,6 +700,12 @@ spec:
       storage: 10Gi
 
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dify-api
+  namespace: dify
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -721,6 +727,10 @@ spec:
       labels:
         app: dify-api
     spec:
+      serviceAccountName: dify-api
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       nodeSelector:
         kubernetes.io/os: linux
       volumes:
@@ -892,6 +902,12 @@ spec:
 # Dify API Server End
 # Dify Worker Server Start
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dify-worker
+  namespace: dify
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -911,6 +927,10 @@ spec:
       labels:
         app: dify-worker
     spec:
+      serviceAccountName: dify-worker
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       nodeSelector:
         kubernetes.io/os: linux
       volumes:
@@ -1052,6 +1072,12 @@ spec:
 
 # Dify Web Server Start
 ---
+apiVersion: v1
+kind: ServiceAccount 
+metadata:
+  name: dify-web
+  namespace: dify
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1070,6 +1096,10 @@ spec:
       labels:
         app: dify-web
     spec:
+      serviceAccountName: dify-web
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       nodeSelector:
         kubernetes.io/os: linux
       automountServiceAccountToken: false
@@ -1120,6 +1150,12 @@ spec:
 
 # Dify Web Server End
 # Dify Nginx Server Start
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dify-nginx
+  namespace: dify
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -1246,6 +1282,10 @@ spec:
       labels:
         app: dify-nginx
     spec:
+      serviceAccountName: dify-nginx
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       nodeSelector:
         kubernetes.io/os: linux
       automountServiceAccountToken: false
