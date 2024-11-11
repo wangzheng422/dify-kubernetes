@@ -432,6 +432,12 @@ spec:
 # Weaviate Server End
 
 # Dify Sandbox Server Start
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dify-sandbox
+  namespace: dify
 
 ---
 apiVersion: apps/v1
@@ -510,6 +516,13 @@ spec:
 # Dify Sandbox Server End
 
 # Dify SSRF Proxy Start
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dify-ssrf
+  namespace: dify
+
 ---
 apiVersion: v1
 kind: ConfigMap
