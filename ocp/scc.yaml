@@ -32,5 +32,7 @@ users:
 - system:serviceaccount:dify:dify-worker
 - system:serviceaccount:dify:dify-web
 - system:serviceaccount:dify:dify-nginx
+- system:serviceaccount:dify:dify-ssrf
+- system:serviceaccount:dify:dify-sandbox
 volumes:
 - '*'

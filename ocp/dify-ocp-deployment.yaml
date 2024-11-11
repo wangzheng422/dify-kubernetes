@@ -97,14 +97,14 @@ spec:
       labels:
         app: dify-postgres
     spec:
-      # serviceAccountName: dify-postgres
+      serviceAccountName: dify-postgres
       terminationGracePeriodSeconds: 10
       nodeSelector:
         kubernetes.io/os: linux
-      # securityContext:
+      securityContext:
       #   runAsUser: 0
       #   fsGroup: 0
-      #   privileged: true
+        privileged: true
       containers:
       - name: dify-postgres
         image: postgres:15-alpine
@@ -237,11 +237,11 @@ spec:
       terminationGracePeriodSeconds: 10
       nodeSelector:
         kubernetes.io/os: linux
-      # serviceAccountName: dify-redis
-      # securityContext:
+      serviceAccountName: dify-redis
+      securityContext:
       #   runAsUser: 0
       #   fsGroup: 0
-      #   privileged: true
+        privileged: true
       containers:
       - name: dify-redis
         image: redis:6-alpine
@@ -455,6 +455,7 @@ spec:
       automountServiceAccountToken: false
       nodeSelector:
         kubernetes.io/os: linux
+      serviceAccountName: dify-sandbox
       securityContext:
         runAsUser: 0
         fsGroup: 0
@@ -647,6 +648,7 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/os: linux
+      serviceAccountName: dify-ssrf
       securityContext:
         runAsUser: 0
         fsGroup: 0
@@ -1305,11 +1307,11 @@ spec:
       labels:
         app: dify-nginx
     spec:
-      # serviceAccountName: dify-nginx
-      # securityContext:
-      #   privileged: true
-      #   runAsUser: 0
-      #   fsGroup: 0
+      serviceAccountName: dify-nginx
+      securityContext:
+        privileged: true
+        runAsUser: 0
+        fsGroup: 0
       nodeSelector:
         kubernetes.io/os: linux
       automountServiceAccountToken: false
