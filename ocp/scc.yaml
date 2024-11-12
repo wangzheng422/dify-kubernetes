@@ -34,5 +34,6 @@ users:
 - system:serviceaccount:dify:dify-nginx
 - system:serviceaccount:dify:dify-ssrf
 - system:serviceaccount:dify:dify-sandbox
+- system:serviceaccount:dify:ollama
 volumes:
 - '*'
