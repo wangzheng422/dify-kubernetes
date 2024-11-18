@@ -728,6 +728,7 @@ metadata:
   name: dify-api-storage
   namespace: dify
 spec:
+  storageClassName: ocs-storagecluster-cephfs
   accessModes:
     - ReadWriteMany
   resources:
